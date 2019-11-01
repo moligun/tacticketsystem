@@ -18,7 +18,10 @@ function Login(props) {
       }
       {props.authStore.authorized && 
         <div className="ml-auto nav-item">
-          <a className="btn btn-outline-danger" href="/auth/logout">Logout</a>
+          <div className="d-flex align-items-baseline">
+            <p className="mr-2"><em>Welcome, {props.authStore.userInfo.lastfirst}</em></p>
+            <a className="btn btn-outline-danger" href="/auth/logout">Logout</a>
+          </div>
         </div>
       }
     </nav>

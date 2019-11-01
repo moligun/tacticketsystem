@@ -7,10 +7,10 @@ const express = require('express')
 
 router.get('/', Auth.requireAuthentication, async (req, res) => {
 		const activePage = req.query.activePage
+		const csvExport = req.query.csvExport
 		let filters = req.query.filters
 		if (typeof filters === 'string') {
 			filters = JSON.parse(filters)
-			console.log(filters)
 		} else {
 			filters = ''
 		}

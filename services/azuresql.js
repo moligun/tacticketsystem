@@ -1,17 +1,7 @@
 const config = require('../config')
 class AzureSql {
 	constructor() {
-		this.db = require('knex')({
-			client: 'mssql',
-			connection: {
-				encrypt: true,
-				port: 1433,
-				database: 'lsc-jhs',
-				server: 'lsc-db.database.windows.net',
-				user: 'lsc_admin',
-				password: process.env.AZURE_SQL_PASSWORD
-			}
-		})
+		this.db = require('knex')(config.azureSql)
 		this.table = ''
 	}
 

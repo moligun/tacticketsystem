@@ -3,18 +3,22 @@ class Tickets extends AzureSql {
 	constructor() {
 		super()
 		this.table = 'TACTickets'
+		this.select = [
+			'TACTickets.*', 
+			'C.title AS category', 
+			'SUB.title AS subcategory', 
+			'Comments.comment', 
+			'Comments.created AS last_updated', 
+			'Students.lastfirst AS studentname',
+			'Students.student_number AS studentnumber',
+			'Students.ps_studentid',
+			'Students.schoolid AS ps_schoolid'
+		]
 	}
 
 	applySelect(item) {
 		return item
-			.select(
-				'TACTickets.*', 'C.title AS category', 
-				'SUB.title AS subcategory', 
-				'Comments.comment', 
-				'Comments.created AS last_updated', 
-				'Students.lastfirst AS studentname',
-				'Students.student_number AS studentnumber'
-			)
+			.select(...this.select)
 			.column(this.db.raw("ISNULL(Comments.status, 'OPEN') AS status"))
 	}
 

@@ -22,6 +22,18 @@ exports.powerSchool = {
 	tokenURL: powerSchoolURL + '/oauth/access_token',
 	namedQueryURL: powerSchoolURL + '/ws/schema/query/'
 }
+exports.azureSql = {
+	client: 'mssql',
+	connection: {
+		encrypt: true,
+		port: 1433,
+		database: 'lsc-jhs',
+		server: process.env.AZURE_SQL_SERVER,
+		user: process.env.AZURE_SQL_USER,
+		password: process.env.AZURE_SQL_PASSWORD
+	}
+
+}
 
 exports.powerSchoolSSO = {
 	URL: powerSchoolURL + '/openid',

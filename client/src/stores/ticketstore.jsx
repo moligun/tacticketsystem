@@ -153,9 +153,36 @@ class TicketStore {
         return csvString + '\r\n'
     }
 
+    getCsvObject(obj) {
+        const createdDate = new Date(obj.created)
+        const day = createdDate.getDate()
+        const year = createdDate.getFullYear()
+        const month = createdDate.getMonth()
+        const dayStart = new Date(year, month, day)
+        const dayString = createdDate.toLocaleString("en-US", { day: "2-digit" })
+        const yearString = createdDate.toLocaleString("en-US", { year: "2-digit" })
+        const monthString = createdDate.toLocaleString("en-US", { month: "short" })
+        let subject = obj.category
+        subject += obj.subcategory ? ' - ' + obj.subcategory : ''
+        subject += ': ' + obj.title 
+        return {
+            "entry_author": obj.studentname,
+            "studentid": obj.ps_studentid,
+            "student_number": obj.studentnumber,
+            "schoolid": obj.ps_schoolid,
+            "entry_date": `${dayString}-${monthString}-${yearString}`,
+            "entry_time": parseInt((createdDate - dayStart) / 1000),
+            "subject": subject,
+            "entry": obj.description,
+            "logtypeid": "7694",
+            "subtype": obj.category,
+            "last_comment": obj.comment
+        }
+    }
+
     getCsvString() {
         this.loadingFile = true
-        const itemsPerPage = 1
+        const itemsPerPage = 1000
         const totalPages = Math.ceil(this.totalRecords / itemsPerPage)
         const promises = []
         for (const num of Array(totalPages).keys()) {
@@ -168,12 +195,13 @@ class TicketStore {
         }
         return Promise.all(promises)
             .then((pages) => {
-                const firstItem = pages[0].shift()
+                const firstItem = this.getCsvObject(pages[0].shift())
                 let csvString = this.addCsvRow(Object.keys(firstItem))
                 csvString += this.addCsvRow(Object.values(firstItem))
                 for (const page of pages) {
                     for (const item of page) {
-                        csvString += this.addCsvRow(Object.values(item))                        
+                        let convertedItem = this.getCsvObject(item)
+                        csvString += this.addCsvRow(Object.values(convertedItem))                        
                     }
                 }
                 runInAction(() => {
