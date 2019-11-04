@@ -176,7 +176,8 @@ class TicketStore {
             "entry": obj.description,
             "logtypeid": "7694",
             "subtype": obj.category,
-            "last_comment": obj.comment
+            "last_comment": obj.comment,
+            "comment_by": obj.updated_by
         }
     }
 

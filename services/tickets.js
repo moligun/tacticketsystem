@@ -9,6 +9,7 @@ class Tickets extends AzureSql {
 			'SUB.title AS subcategory', 
 			'Comments.comment', 
 			'Comments.created AS last_updated', 
+			'Users.lastfirst AS updated_by',
 			'Students.lastfirst AS studentname',
 			'Students.student_number AS studentnumber',
 			'Students.ps_studentid',
@@ -34,6 +35,7 @@ class Tickets extends AzureSql {
 						.whereRaw('Comment1.id > Comments.id')
 				})
 			})
+			.leftOuterJoin('TACTicket_Users AS Users', 'Comments.created_by', 'Users.id')
 		return item
 	}
 

@@ -54,12 +54,12 @@ class Ticket extends React.Component {
                     <section>{ticket.description}</section>
                 </div>
                 {ticket.comment && <div className="ticketTextBox ticketLastComment">
-                    <header><strong>Last Comment</strong></header>
+                    <header>
+                        <div><strong>Last Comment</strong></div>
+                        <div><em>{ticket.updated_by} @ { updatedString.length > 0 ? updatedString : ''}</em></div>
+                    </header>
                     <section>{ticket.comment}</section>
                 </div>}
-                {updatedString.length > 0 && 
-                    <div><em>Updated: {updatedString}</em></div>
-                }
                 <footer className="d-flex align-items-end justify-content-between">
                     <div><em>Created: {createdString}</em></div>
                     <div><em>Status: {ticket.status}</em></div>
