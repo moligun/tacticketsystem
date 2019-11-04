@@ -4,7 +4,6 @@
 # KUDU Deployment Script
 # Version: 1.0.16
 # ----------------------
-
 # Helpers
 # -------
 
