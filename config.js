@@ -5,7 +5,7 @@ const tenantID = process.env.GRAPH_TENANT_ID;
 const clientID = process.env.GRAPH_CLIENT_ID;
 const clientSecret = process.env.GRAPH_CLIENT_SECRET;
 const redisPass = process.env.REDIS_PASS;
-const powerSchoolURL = 'https://pschool2.lsc.k12.in.us';
+const powerSchoolURL = 'https://powerschool.lsc.k12.in.us';
 
 exports.passport = {
 	state: true,

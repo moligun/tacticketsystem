@@ -2,7 +2,7 @@
   "name": "passport-azure-ad-login-oidc",
   "version": "0.0.1",
   "scripts": {
-    "start": "(cd client && npm install && npm run build) & node ./bin/www"
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "@azure/storage-file": "^12.0.0-preview.1",
