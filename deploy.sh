@@ -115,7 +115,6 @@ if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
   echo "Running $NPM_CMD install --production"
   eval $NPM_CMD install --production
   exitWithMessageOnError "npm failed"
-  cd - > /dev/null
 fi
 
 # 4. Install client npm packages
@@ -124,7 +123,6 @@ if [ -e "$DEPLOYMENT_TARGET/client/package.json" ]; then
   echo "Running $NPM_CMD install"
   eval $NPM_CMD install
   exitWithMessageOnError "npm failed"
-  cd - > /dev/null
 fi
 
 # 5. Build production react
