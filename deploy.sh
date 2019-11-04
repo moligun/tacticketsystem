@@ -89,7 +89,7 @@ selectNodeVersion () {
 
     NPM_CMD="\"$NODE_EXE\" \"$NPM_JS_PATH\""
   else
-    NPM_CMD=npm
+    NPM_CMD=sudo npm
     NODE_EXE=node
   fi
 }
