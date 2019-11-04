@@ -12,7 +12,7 @@ variables:
   azureSubscription: '56f87575-7f65-499a-9588-5a164694e9bb'
   
   # Web app name
-  webAppName: 'ljhs-tacticket'
+  webAppName: 'ljhs-tacticket-stage'
   
   # Environment name
   environmentName: 'ljhs-tacticket'
